@@ -12,7 +12,7 @@ all_keys.addEventListener("click", (event) => {
     const button_pressed = event.target;
     const action = button_pressed.dataset.action;
 
-    //if the button pressed is a digit, replace the 0 and display the digits pressed
+    //if the button pressed is a digit, replace first character if 0 and display the digits pressed
     if (!action) {
       if (displayContent === "0" || (firstNumber && !secondNumber)) {
         display.textContent = button_pressed.textContent;
@@ -41,12 +41,15 @@ all_keys.addEventListener("click", (event) => {
       display.textContent = 0;
     }
 
+    //if AC clicked, set everything to starting values
     if (action === "restart") {
       display.textContent = 0;
       firstNumber = 0;
       firstOperator = undefined;
     }
 
+    //when = clicked, set current display to 2nd value
+    //display calculation
     if (action === "calculate") {
       secondNumber = displayContent;
       display.textContent = calculate(firstNumber, secondNumber, firstOperator);
@@ -54,6 +57,8 @@ all_keys.addEventListener("click", (event) => {
   }
 });
 
+//method that takes in the two numbers and operator
+//returns result rounded to the 8th decimal place
 const calculate = (num1, num2, operation) => {
   if (operation === "add") {
     result = num1 + num2;
