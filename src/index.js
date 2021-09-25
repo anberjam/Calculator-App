@@ -22,6 +22,7 @@ all_keys.addEventListener("click", (event) => {
     }
 
     //if the decimal button is pressed, concat . to end of displayContent
+    //if there's already a ".", do nothing
     if (action === "decimal") {
       if (!displayContent.includes(".")) {
         display.textContent = displayContent + ".";
@@ -60,6 +61,8 @@ all_keys.addEventListener("click", (event) => {
 //method that takes in the two numbers and operator
 //returns result rounded to the 8th decimal place
 const calculate = (num1, num2, operation) => {
+  num1 = Number.parseFloat(num1);
+  num2 = Number.parseFloat(num2);
   if (operation === "add") {
     result = num1 + num2;
   } else if (operation === "subtract") {
